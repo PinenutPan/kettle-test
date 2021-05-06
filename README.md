@@ -15,4 +15,3 @@ create table test.stu2
 
 ```
 ### kt.kjb、kt.ktr这两个脚本中需要改成自己的本地数据库
-### kettle.script.path: 本地的脚本路径

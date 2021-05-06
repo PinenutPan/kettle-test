@@ -6,7 +6,6 @@ import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -16,11 +15,9 @@ import java.util.Map;
 @Service
 @Slf4j
 public class KettleService {
-    @Value("${kettle.script.path}")
-    private String dirPath;
-
     /**
      * 执行ktr文件
+     *
      * @param filename
      * @param params
      * @return
@@ -28,20 +25,20 @@ public class KettleService {
     public String runKtr(String filename, Map<String, String> params) {
         try {
             KettleEnvironment.init();
-            TransMeta tm = new TransMeta(dirPath + File.separator + filename);
+            TransMeta tm = new TransMeta(this.getClass().getResource("/") + File.separator + "kettle" + File.separator + filename);
             Trans trans = new Trans(tm);
             if (params != null) {
                 Iterator<Map.Entry<String, String>> entries = params.entrySet().iterator();
                 while (entries.hasNext()) {
                     Map.Entry<String, String> entry = entries.next();
-                    trans.setParameterValue(entry.getKey(),entry.getValue());
+                    trans.setParameterValue(entry.getKey(), entry.getValue());
                 }
             }
 
             trans.execute(null);
             trans.waitUntilFinished();
         } catch (Exception e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         }
 
         return "success";
@@ -49,6 +46,7 @@ public class KettleService {
 
     /**
      * 执行kjb文件
+     *
      * @param filename
      * @param params
      * @return
@@ -56,7 +54,7 @@ public class KettleService {
     public String runKjb(String filename, Map<String, String> params) {
         try {
             KettleEnvironment.init();
-            JobMeta jm = new JobMeta(dirPath + File.separator + filename, null);
+            JobMeta jm = new JobMeta(this.getClass().getResource("/") + File.separator + "kettle" + File.separator + filename, null);
             Job job = new Job(null, jm);
             if (params != null) {
                 Iterator<Map.Entry<String, String>> entries = params.entrySet().iterator();
@@ -69,10 +67,13 @@ public class KettleService {
             job.start();
             job.waitUntilFinished();
         } catch (Exception e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         }
 
         return "success";
+    }
+
+    public static void main(String[] args) {
     }
 
 }

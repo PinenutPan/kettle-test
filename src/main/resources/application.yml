@@ -1,9 +1,3 @@
-
-#win系统
-kettle:
-  script:
-    path: F:\pan\学习\kettle
-
 server:
   servlet:
     context-path: /kettle
