@@ -1,3 +1,8 @@
+```
+mvn install:install-file -Dfile=kettle-core-9.1.0.0-324.jar  -DgroupId=pentaho-kettle -DartifactId=kettle-core -Dversion=9.1.0.0-324 -Dpackaging=jar
+mvn install:install-file -Dfile=kettle-engine-9.1.0.0-324.jar  -DgroupId=pentaho-kettle -DartifactId=kettle-engine -Dversion=9.1.0.0-324 -Dpackaging=jar
+mvn install:install-file -Dfile=metastore-9.1.0.0-324.jar  -DgroupId=pentaho-kettle -DartifactId=metastore -Dversion=9.1.0.0-324 -Dpackaging=jar
+```
 ##本地创建两个表
 ```
 create table test.stu1
