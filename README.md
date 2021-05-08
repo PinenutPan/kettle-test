@@ -18,5 +18,16 @@ create table test.stu2
 	name varchar(20) null
 );
 
+create table if not exists test.`database`
+(
+	id bigint auto_increment
+		primary key,
+	ip varchar(20) null,
+	port varchar(10) null,
+	username varchar(20) null,
+	password varchar(20) null
+);
+
+
 ```
 ### kt.kjb、kt.ktr这两个脚本中需要改成自己的本地数据库
