@@ -31,4 +31,4 @@ create table if not exists test.`database`
 
 
 ```
-### kt.kjb、kt.ktr这两个脚本中需要改成自己的本地数据库
+### kt.kjb、kt.ktr这两个脚本中需要改配置文件，改成自己的本地数据库
