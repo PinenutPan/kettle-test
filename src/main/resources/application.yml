@@ -1,3 +1,11 @@
 server:
   servlet:
     context-path: /kettle
+  port: 8888
+
+kettle:
+  ip: '127.0.0.1'
+  port: '3306'
+  username: 'root'
+  password: '55555'
+

@@ -4,13 +4,34 @@
   <description/>
   <extended_description/>
   <job_version/>
+  <job_status>0</job_status>
   <directory>/</directory>
   <created_user>-</created_user>
   <created_date>2021/04/30 09:15:30.637</created_date>
   <modified_user>-</modified_user>
   <modified_date>2021/04/30 09:15:30.637</modified_date>
   <parameters>
-    </parameters>
+    <parameter>
+      <name>ip</name>
+      <default_value>127.0.0.1</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>password</name>
+      <default_value>55555</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>port</name>
+      <default_value>3306</default_value>
+      <description/>
+    </parameter>
+    <parameter>
+      <name>username</name>
+      <default_value>root</default_value>
+      <description/>
+    </parameter>
+  </parameters>
   <connection>
     <name>test</name>
     <server>127.0.0.1</server>
@@ -364,6 +385,24 @@
       <attributes_kjc/>
     </entry>
     <entry>
+      <name>SQL</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>insert into stu1 (id, name, age) VALUE (5,'再加一条哦数据12',5)</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>test</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>864</xloc>
+      <yloc>208</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
       <name>转换</name>
       <description/>
       <type>TRANS</type>
@@ -398,33 +437,61 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>448</xloc>
+      <xloc>656</xloc>
       <yloc>208</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
-      <name>SQL</name>
+      <name>设置变量</name>
       <description/>
-      <type>SQL</type>
+      <type>SET_VARIABLES</type>
       <attributes/>
-      <sql>insert into stu1 (id, name, age) VALUE (5,'再加一条哦数据12',5)</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>test</connection>
+      <replacevars>Y</replacevars>
+      <filename/>
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>ip</variable_name>
+          <variable_value>${ip}</variable_value>
+          <variable_type>JVM</variable_type>
+        </field>
+        <field>
+          <variable_name>port</variable_name>
+          <variable_value>${port}</variable_value>
+          <variable_type>JVM</variable_type>
+        </field>
+        <field>
+          <variable_name>username</variable_name>
+          <variable_value>${username}</variable_value>
+          <variable_type>JVM</variable_type>
+        </field>
+        <field>
+          <variable_name>password</variable_name>
+          <variable_value>${password}</variable_value>
+          <variable_type>JVM</variable_type>
+        </field>
+      </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>608</xloc>
+      <xloc>464</xloc>
       <yloc>208</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
     <hop>
+      <from>转换</from>
+      <to>SQL</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Start</from>
-      <to>转换</to>
+      <to>设置变量</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -432,8 +499,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>转换</from>
-      <to>SQL</to>
+      <from>设置变量</from>
+      <to>转换</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
