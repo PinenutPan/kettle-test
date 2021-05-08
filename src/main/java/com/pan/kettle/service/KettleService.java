@@ -64,15 +64,13 @@ public class KettleService {
     /**
      * 执行kjb文件
      *
-     * @param filename
+     * @param path
      * @param params
      * @return
      */
-    public String runKjb(String filename, Map<String, String> params) {
+    public String runKjb(String path, Map<String, String> params) {
         try {
             KettleEnvironment.init();
-
-            String path = this.getClass().getResource("/") + File.separator + "kettle" + File.separator + filename;
             JobMeta jobMeta = new JobMeta(path, null);
             jobMeta.setParameterValue("ip",ip);
             jobMeta.setParameterValue("port",port);

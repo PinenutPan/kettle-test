@@ -1046,7 +1046,7 @@
     <single_statement>N</single_statement>
     <replace_variables>Y</replace_variables>
     <quoteString>N</quoteString>
-    <sql>insert into `database` (id, ip, port, username, password) value (1, ?, ?, ?, ?)</sql>
+    <sql>insert into `database` (ip, port, username, password) value ('?', '?', '?', '?')</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
