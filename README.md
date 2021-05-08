@@ -25,7 +25,8 @@ create table if not exists test.`database`
 	ip varchar(20) null,
 	port varchar(10) null,
 	username varchar(20) null,
-	password varchar(20) null
+	password varchar(20) null,
+	directory varchar(100) null
 );
 
 
