@@ -1,5 +1,6 @@
 package com.pan.kettle.controller;
 
+import com.jcraft.jsch.SftpException;
 import com.pan.kettle.service.KettleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/kettle")
@@ -27,6 +29,13 @@ public class KettleController {
     @ApiOperation("跑作业文件")
     public String patientJob (@RequestParam String fileName) {
         return kettleService.runKjb(fileName, null);
+    }
+
+    @PostMapping("test")
+    @ApiOperation("测试")
+    public String test () throws IOException, SftpException {
+        kettleService.test();
+        return "success";
     }
 
 }

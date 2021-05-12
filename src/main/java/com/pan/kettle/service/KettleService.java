@@ -1,5 +1,8 @@
 package com.pan.kettle.service;
 
+import com.jcraft.jsch.SftpException;
+import com.pan.kettle.utils.SftpUtils;
+import com.pan.kettle.utils.UnzipUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.job.Job;
@@ -10,7 +13,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -95,7 +100,27 @@ public class KettleService {
         return "success";
     }
 
-    public static void main(String[] args) {
+    public void test() throws IOException, SftpException {
+        SftpUtils sftp = new SftpUtils("sftp", "sftp", "10.1.41.83", 22);
+        sftp.login();
+        String ftpPath = "\\kettleFile\\202105111713042\\kettle.zip";
+        String saveFile = System.getProperty("java.io.tmpdir") + ftpPath;
+        File file = new File(saveFile);
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        String directory = ftpPath.substring(0, ftpPath.lastIndexOf(File.separator));
+        String fileName = ftpPath.substring(ftpPath.lastIndexOf(File.separator) + 1);
+        sftp.download(directory, fileName, file.getPath());
+        String filePath = System.getProperty("java.io.tmpdir") + "kettleFile" + File.separator + "202105111713042" + File.separator;
+        List<File> fileList = UnzipUtil.unZip(file.getPath(), filePath);
+        log.info("文件数量:{}", fileList.size());
+        for (File f : fileList) {
+            if (f.getPath().endsWith(".kjb")) {
+                this.runKjb(f.getPath(), null);
+            }
+        }
+        sftp.logout();
     }
 
 }

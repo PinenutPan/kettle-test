@@ -29,42 +29,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--<dependency>
-            <groupId>pentaho-kettle</groupId>
-            <artifactId>kettle-core</artifactId>
-            <version>9.1.0.0-324</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/kettle-core-9.1.0.0-324.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>pentaho-kettle</groupId>
-            <artifactId>kettle-engine</artifactId>
-            <version>9.1.0.0-324</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/kettle-engine-9.1.0.0-324.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>pentaho-kettle</groupId>
-            <artifactId>metastore</artifactId>
-            <version>9.1.0.0-324</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/metastore-9.1.0.0-324.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-vfs2</artifactId>
-            <version>2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-        </dependency>-->
 
         <dependency>
             <groupId>pentaho-kettle</groupId>
@@ -122,6 +86,17 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.axet</groupId>
+            <artifactId>java-unrar</artifactId>
+            <version>1.7.0-5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.9.1</version>
         </dependency>
     </dependencies>
 
